@@ -21,17 +21,19 @@ class _app_finalState extends State<app_final> {
         appBar: AppBar(title: Text("Aplicativo final 21420")),
         body: Container(
           child: FloatingActionButton(
-            onPressed: () {
+            onPressed: () async {
               var datareal = Text(DateFormat("dd/MM//yyyy").format(agora) +
                   hora_atual); // data + horário exato de agora
 
               Map data = {"nome": "seu marquinhos", "data": datareal};
 
-              var baseUrl = Uri.parse("link api sergio");
+              var baseUrl = Uri.parse("www.slmm.com.br/CTC/insere.php");
+              
+              var body = json.encode(data);
 
-              http.Response response = http.post(baseUrl,
-                      headers: {"Content-Type": "application/json"})
-                  as http.Response;
+              http.Response response = await http.post(baseUrl,
+                      headers: {"Content-Type": "application/json"},
+                      body: body);
 
               print(response.statusCode);
               //botão para post
